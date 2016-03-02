@@ -104,7 +104,10 @@ class Maze:
         self.grid = np.zeros(g, dtype=np.uint8)
 
     def generate(self):
+        h, w = self.grid.shape
         self.mazegenf(self.grid)
+        self.grid[0, 0] += Direction.Up
+        self.grid[h-1, w-1] += Direction.Down
 
     def draw(self, output):
         h, w = self.grid.shape
