@@ -1,6 +1,7 @@
 from pathlib import Path
 from PIL import Image
 
+
 def get_tiles():
     p = Path("tiles")
     p_crossroad = p / "crossroad_10c.png"

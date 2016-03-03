@@ -1,14 +1,18 @@
 import random
 from maze import Direction
 
+
 def recursive_backtracking(maze, cy=0, cx=0):
     """
     Method:
     1. Choose a starting point in the field.
-    2. Randomly choose a wall at that point and carve a passage through to the adjacent cell,
-    but only if the adjacent cell has not been visited yet. This becomes the new current cell.
-    3. If all adjacent cells have been visited, back up to the last cell that has uncarved walls and repeat.
-    4. The algorithm ends when the process has backed all the way up to the starting point.
+    2. Randomly choose a wall at that point and carve a passage through to the
+        adjacent cell, but only if the adjacent cell has not been visited yet.
+        This becomes the new current cell.
+    3. If all adjacent cells have been visited, back up to the last cell that
+        has uncarved walls and repeat.
+    4. The algorithm ends when the process has backed all the way up to the
+        starting point.
     """
     directions = list(Direction)
     transform = {Direction.Up: {"y": -1, "x": 0},
