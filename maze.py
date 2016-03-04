@@ -35,30 +35,30 @@ class Direction(IntEnum):
 
 
 class Maze:
-    def __init__(self, h=50, w=50):
-        g = (h, w)
-        self.grid = np.zeros(g, dtype=np.uint8)
+    def __init__(self, height, width):
+        grid_shape = (height, width)
+        self.grid = np.zeros(grid_shape, dtype=np.uint8)
 
     def generate(self, mazegenf):
-        h, w = self.grid.shape
+        height, width = self.grid.shape
         mazegenf(self)
         self.grid[0, 0] += Direction.Up
-        self.grid[h-1, w-1] += Direction.Down
+        self.grid[height-1, width-1] += Direction.Down
 
     def draw(self, output):
-        h, w = self.grid.shape
-        img = Image.new("RGB", (w*10, h*10), "white")
+        height, width = self.grid.shape
+        img = Image.new("RGB", (width*10, height*10), "white")
         tiles = get_tiles()
-        for y in range(h):
-            for x in range(w):
+        for y in range(height):
+            for x in range(width):
                 v = self.grid[y, x]
                 t = tiles[v]
                 img.paste(t, (x*10, y*10))
         img.save(output)
 
     def within_bounds(self, y, x):
-        h, w = self.grid.shape
-        if y >= 0 and y < h and x >= 0 and x < w:
+        height, width = self.grid.shape
+        if y >= 0 and y < height and x >= 0 and x < width:
             return True
         else:
             return False
