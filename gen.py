@@ -15,10 +15,6 @@ def recursive_backtracking(maze, cy=0, cx=0):
         starting point.
     """
     directions = list(Direction)
-    transform = {Direction.Up: {"y": -1, "x": 0},
-                 Direction.Down: {"y": 1, "x": 0},
-                 Direction.Left: {"y": 0, "x": -1},
-                 Direction.Right: {"y": 0, "x": 1}}
     cells = []
     cells.append((cy, cx))
 
@@ -26,8 +22,7 @@ def recursive_backtracking(maze, cy=0, cx=0):
         y, x = cells.pop()
         random.shuffle(directions)
         for direction in directions:
-            ny = y + transform[direction]["y"]
-            nx = x + transform[direction]["x"]
+            ny, nx = direction.transform(y, x)
 
             if maze.within_bounds(ny, nx) and maze.grid[ny, nx] == 0:
                 maze.grid[y, x] += direction

@@ -22,6 +22,14 @@ class Direction(IntEnum):
         else:
             return None
 
+    def transform(self, y, x):
+        transform = {Direction.Up: {"y": -1, "x": 0},
+                     Direction.Down: {"y": 1, "x": 0},
+                     Direction.Left: {"y": 0, "x": -1},
+                     Direction.Right: {"y": 0, "x": 1}}
+        ny, nx = y + transform[self]["y"], x + transform[self]["x"]
+        return ny, nx
+
     @classmethod
     def from_num(cls, num):
         dirs = []
