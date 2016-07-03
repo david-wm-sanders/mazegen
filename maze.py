@@ -43,17 +43,17 @@ class Maze:
         height, width = self.grid.shape
         mazegenf(self)
         self.grid[0, 0] += Direction.Up
-        self.grid[height-1, width-1] += Direction.Down
+        self.grid[height - 1, width - 1] += Direction.Down
 
     def draw(self, output):
         height, width = self.grid.shape
-        img = Image.new("RGB", (width*10, height*10), "white")
+        img = Image.new("RGB", (width * 10, height * 10), "white")
         tiles = get_tiles()
         for y in range(height):
             for x in range(width):
                 v = self.grid[y, x]
                 t = tiles[v]
-                img.paste(t, (x*10, y*10))
+                img.paste(t, (x * 10, y * 10))
         img.save(output)
 
     def within_bounds(self, y, x):
